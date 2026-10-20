@@ -1,3 +1,58 @@
 # Bank Branch Network & Deposit Analysis
 
-Portfolio implementation and documentation are being added.
+A reproducible analysis of branch coverage, deposit concentration, and matched-branch growth, with a schema adapter for owner-downloaded FDIC Summary of Deposits exports.
+
+**[Open the interactive demo](https://pratikkumar-data-ai-portfolio.woollydog11.chatgpt.site/demos/public-bank-branch-analytics.html)** · [Portfolio](https://pratikkumar-data-ai-portfolio.woollydog11.chatgpt.site) · [LinkedIn](https://www.linkedin.com/in/pratikkumarchaudhari/)
+
+## Business question
+
+How does a branch network change across observation years, and how do deposits and concentration vary by state?
+
+## Run locally — no paid APIs or cloud account
+
+Requires Python 3.11 or 3.12. In Windows PowerShell:
+
+```powershell
+git clone https://github.com/Pratikkumarchaudhari/public-bank-branch-analytics.git
+cd public-bank-branch-analytics
+py -3.12 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe analysis.py
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
+Start-Process report.html
+```
+
+On macOS/Linux use `python3 -m venv .venv`, `.venv/bin/python -m pip install -r requirements.txt`, then `.venv/bin/python analysis.py`. Open `report.html` in your browser.
+
+`report.html` is a checked-in snapshot of the demonstrated sample results. Running the command regenerates CSV/JSON outputs; it does not automatically refresh the HTML. For a new input, inspect those generated outputs or explicitly rebuild the report. No server, account, or API key is required. Normal internet and electricity use still apply.
+
+## Reproduced sample findings
+
+The synthetic sample contains 170 branches in 2024 and 171 in 2025: nine entering IDs and eight exiting IDs. Matched-branch deposit growth is 6.56%. All deposit values remain in thousands of dollars.
+
+## How it works
+
+Require unique (year, branch_id) keys and finite, nonnegative deposits. Aggregate the latest year by state and bank; compute state shares and within-state HHI = sum of squared bank deposit shares (percentage points squared, range up to 10,000). Match IDs across the two latest available years to separate cohort growth from footprint changes. The prior period may not be the immediately preceding calendar year; its year is reported explicitly.
+
+Use `python analysis.py --input local_data/SOD.csv --fdic` for a downloaded FDIC export. Expected FDIC headers: YEAR, UNINUMBR, CERT, STALPBR, DEPSUMBR. Download those fields through [FDIC BankFind](https://banks.data.fdic.gov/bankfind-suite/SOD/customDownload). Check the current field definitions and deposit units before importing. Combine annual exports if you need a two-period comparison. A real FDIC dataset was not downloaded or tested in this session.
+
+## Repository guide
+
+| Path | Purpose |
+|---|---|
+| `analysis.py` | Executable analysis pipeline |
+| `outputs/` | Reproducible sample metrics and review outputs |
+| `tests/` | Meaningful input, reconciliation, and behavior checks |
+| `report.html` | Standalone interactive sample report |
+| `docs/INTERVIEW_GUIDE.md` | Walkthrough, decisions, limitations, resume wording |
+| `.github/workflows/checks.yml` | Dependency install, unit checks, and sample execution |
+
+## Data dictionary
+
+year: observation year; branch_id: branch identity within year; bank_id: owning bank identity; state: state/jurisdiction; deposits_thousands: deposit amount in $000. FDIC adapter preserves units. Generated SYN/BANK identifiers do not represent real institutions.
+
+## Scope and limitations
+
+The checked-in dataset is generated, not FDIC data. HHI is a descriptive concentration measure, not a regulatory or competitive finding. Deposit growth is nominal, not inflation-adjusted. Export coverage, branch identifier changes, and restatements can affect cohort matching. State share refers only to the included sample.
+
+Independent portfolio work developed with AI assistance. Contains no employer records, internal procedures, credentials, or confidential material. Synthetic benchmark results must not be presented as employer outcomes. Review and understand the implementation before representing it in an interview. MIT license covers this original code and synthetic data; separately imported source data retains its own terms.

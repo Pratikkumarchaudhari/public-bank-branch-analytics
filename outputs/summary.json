@@ -1,0 +1,62 @@
+{
+  "data_type": "Synthetic demonstration",
+  "latest_year": 2025,
+  "total_deposits_thousands": 24514624.98,
+  "branches": 171,
+  "states": [
+    {
+      "state": "CT",
+      "branches": 34,
+      "deposits_thousands": 4520007.01,
+      "deposit_share_pct": 18.44,
+      "hhi": 870.76
+    },
+    {
+      "state": "MA",
+      "branches": 34,
+      "deposits_thousands": 4924708.79,
+      "deposit_share_pct": 20.09,
+      "hhi": 877.03
+    },
+    {
+      "state": "NJ",
+      "branches": 34,
+      "deposits_thousands": 4969414.45,
+      "deposit_share_pct": 20.27,
+      "hhi": 882.03
+    },
+    {
+      "state": "NY",
+      "branches": 35,
+      "deposits_thousands": 5375381.82,
+      "deposit_share_pct": 21.93,
+      "hhi": 871.88
+    },
+    {
+      "state": "PA",
+      "branches": 34,
+      "deposits_thousands": 4725112.91,
+      "deposit_share_pct": 19.27,
+      "hhi": 853.39
+    }
+  ],
+  "yearly": [
+    {
+      "year": 2024,
+      "branches": 170,
+      "deposits_thousands": 22652665.0
+    },
+    {
+      "year": 2025,
+      "branches": 171,
+      "deposits_thousands": 24514624.98
+    }
+  ],
+  "cohort": {
+    "prior_year": 2024,
+    "net_change": 1,
+    "added": 9,
+    "removed": 8,
+    "matched_growth_pct": 6.56
+  }
+}
