@@ -19,6 +19,16 @@ The CSV contains 341 branch-year rows and 5 columns: 170 rows for 2024 and 171 f
 
 Python/Pandas computes the metrics; NumPy supports numerical validation. Results are saved as CSV/JSON, and HTML/CSS/JavaScript displays the saved report. SQL files are SQLite-compatible reference queries, not the main execution engine. No Snowflake, Tableau, Power BI, or hosted database is used for these calculations.
 
+## Trace the 6.56% calculation
+
+**[Read the exact growth walkthrough](docs/DEPOSIT_GROWTH_WALKTHROUGH.md)** — numerator, denominator, 162 matched IDs, individual branch examples, state/bank breakdowns, and the deposit reconciliation bridge.
+
+- [All 179 branch IDs compared across periods](outputs/branch_comparison.csv)
+- [Matched cohort by latest state](outputs/matched_by_state.csv)
+- [Matched cohort by latest bank](outputs/matched_by_bank.csv)
+
+The 162 matched branches have prior deposits of **21,756,069.00** and latest deposits of **23,182,213.20**, both in $000. Their aggregate growth is **6.5551557% → 6.56%**. Total network deposit growth is **8.22%** after including entering/exiting IDs; it has a different denominator.
+
 ## Business question
 
 How does a branch network change across observation years, and how do deposits and concentration vary by state?
@@ -39,7 +49,7 @@ Start-Process report.html
 
 On macOS/Linux use `python3 -m venv .venv`, `.venv/bin/python -m pip install -r requirements.txt`, then `.venv/bin/python analysis.py`. Open `report.html` in your browser.
 
-`report.html` is a checked-in snapshot of the demonstrated sample results. Running the command regenerates CSV/JSON outputs; it does not automatically refresh the HTML. For a new input, inspect those generated outputs or explicitly rebuild the report. No server, account, or API key is required. Normal internet and electricity use still apply.
+`analysis.py` now regenerates the CSV/JSON outputs and standalone `report.html` together. The report includes the growth formula, a deposit bridge, state/bank matched-cohort breakdowns, and a filterable/exportable branch ledger. `python render_report.py` can also rebuild the HTML from a saved summary. The hosted demo remains a published batch snapshot; running the script locally does not publish it. No server, account, or paid API is required. Normal internet and electricity use still apply.
 
 ## Reproduced sample findings
 

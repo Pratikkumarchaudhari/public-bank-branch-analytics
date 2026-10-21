@@ -3,9 +3,13 @@
 Executed in Python 3.12 in the portfolio build workspace. Dependency versions are recorded in requirements.txt.
 
 - `analysis.py` completed and wrote the checked-in sample outputs.
-- Unit tests passed: 5.
+- Python unit tests passed: 10.
 - Sample result: The synthetic sample contains 170 branches in 2024 and 171 in 2025: nine entering IDs and eight exiting IDs. Matched-branch deposit growth is 6.56%. All deposit values remain in thousands of dollars.
-- Static HTML report includes filters and uses the same saved sample data.
+- Three Node dashboard-logic tests passed.
+- Independent decimal source-CSV sums reproduce the matched-growth numerator and denominator.
+- Branch cohorts, deposit bridge, and state/bank breakdowns reconcile.
+- The analysis regenerates all CSV/JSON outputs and the HTML report together.
+- The report includes the growth formula, bridge, matched cohorts, and filterable branch ledger.
 - Browser interaction and Windows commands were not executed in this workspace.
 - GitHub Actions has been configured; its remote run is not claimed here.
 

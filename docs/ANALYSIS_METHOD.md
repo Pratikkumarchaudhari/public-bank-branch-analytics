@@ -2,6 +2,8 @@
 
 [Dataset and provenance](../data/README.md) · [Static CSV](../data/branches.csv) · [Executable analysis](../analysis.py)
 
+For the exact 6.56% calculation and the expanded cohort outputs, see the [Deposit growth walkthrough](DEPOSIT_GROWTH_WALKTHROUGH.md).
+
 ## Platforms actually used
 
 | Purpose | Implementation |
@@ -81,7 +83,7 @@ Entering/exiting IDs are not automatically proven openings/closures. Source cove
 - [outputs/state_metrics.csv](../outputs/state_metrics.csv): latest-year state aggregates.
 - [report.html](../report.html): saved interactive sample report.
 
-Running the analysis refreshes CSV/JSON outputs but does not automatically refresh the HTML. New source data must be paired with an explicitly updated report before publication.
+Running the analysis now refreshes CSV/JSON outputs and the standalone HTML together. The additional outputs are `branch_comparison.csv`, `matched_by_state.csv`, and `matched_by_bank.csv`; `summary.json` also contains `growth_audit` and row-level comparison data. Publishing remains a separate step.
 
 ## Reproduce the calculation
 
@@ -92,7 +94,7 @@ python analysis.py --input data/branches.csv
 python -m unittest discover -s tests -v
 ```
 
-Use the virtual environment and Windows instructions in the main README when applicable. The original five tests cover reconciliation, duplicate keys, monopoly HHI, zero/negative deposits, and blank keys.
+Use the virtual environment and Windows instructions in the main README when applicable. Ten Python tests cover key and numeric validation, HHI, independent source-CSV growth arithmetic, aggregate-versus-average growth, cohort and bridge reconciliation, zero denominators, single-year inputs, and latest-period group assignment. Three Node tests cover ledger filtering and CSV handling.
 
 ## What to say in an interview
 

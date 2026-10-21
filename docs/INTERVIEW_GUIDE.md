@@ -2,6 +2,8 @@
 
 See [analysis methodology and platforms](ANALYSIS_METHOD.md) and [data provenance](../data/README.md) for the underlying dataset and calculations.
 
+See the [exact deposit growth walkthrough](DEPOSIT_GROWTH_WALKTHROUGH.md) to explain the 6.56% numerator, denominator, matched IDs, and deposit bridge.
+
 ## 60-second explanation
 
 “This is an independent portfolio project connecting my data stewardship experience with hands-on Python analysis. The question is: how to distinguish changes in a branch network from deposit growth? I used synthetic data so the work is reproducible and shareable. The synthetic sample contains 170 branches in 2024 and 171 in 2025: nine entering IDs and eight exiting IDs. Matched-branch deposit growth is 6.56%. All deposit values remain in thousands of dollars. I would validate the assumptions and outputs with a business owner before applying the method to real data.”
